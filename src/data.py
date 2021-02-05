@@ -3,11 +3,15 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 import pickle
+from pathlib import Path
+
+path = Path(__file__).parent
+
 
 def prepare_data():
     
 
-    data = pd.read_csv('../data/breast cancer data.csv')
+    data = pd.read_csv('/home/gustavoaraujo/Documentos/github/breast-cancer/data/breast cancer data.csv')
     data.drop(columns=['id', 'Unnamed: 32'], inplace=True)
     data.dropna(inplace=True)
 
@@ -23,8 +27,9 @@ def prepare_data():
     X_test_scaled = scaler.transform(X_test)
     X_scaled = scaler.transform(X)
    
+    file_path = (path / "../encoders/label_encoder.sav").resolve()
+    pickle.dump(le, open(file_path, 'wb'))
+    file_path = (path / "../scalers/scaler.sav").resolve()
+    pickle.dump(scaler, open(file_path, 'wb'))
 
-    pickle.dump(le, open('../encoders/label_encoder.sav', 'wb'))
-    pickle.dump(scaler, open('../scalers/scaler.sav', 'wb'))
-
-    return X_scaled, y, X_train_scaled, X_test_scaled, y_train, y_test
+    return X_scaled, y, X_train_scaled, y_train, X_test_scaled, y_test
