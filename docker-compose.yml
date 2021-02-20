@@ -1,0 +1,36 @@
+version: '2'
+services:
+  flask:
+    container_name: api-flask
+    hostname: api-flask
+    build: 
+      context: .
+      dockerfile: Dockerfile.flask
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+  
+  streamlit:
+    container_name: streamlit-app
+    hostname: streamlit-app
+    build: 
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports: 
+      - "8501:8501"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:12
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+    
