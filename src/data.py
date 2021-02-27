@@ -11,7 +11,7 @@ path = Path(__file__).parent
 def prepare_data():
     
 
-    data = pd.read_csv('/home/gustavoaraujo/Documentos/github/breast-cancer/data/breast cancer data.csv')
+    data = pd.read_csv('data/breast_cancer_data.csv')
     data.drop(columns=['id', 'Unnamed: 32'], inplace=True)
     data.dropna(inplace=True)
 

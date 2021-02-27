@@ -5,3 +5,4 @@
 /scalers/scaler.sav
 src/__pycache__/data.cpython-38.pyc
 src/__pycache__/train_diagnosis.cpython-38.pyc
+testes.py
