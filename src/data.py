@@ -33,3 +33,17 @@ def prepare_data():
     pickle.dump(scaler, open(file_path, 'wb'))
 
     return X_scaled, y, X_train_scaled, y_train, X_test_scaled, y_test
+
+
+def load_data_to_predict(id):
+
+    data = pd.read_csv(f'data/to_predict/{id}.csv')
+    data.drop(columns=['id'], inplace=True)
+    data.dropna(inplace=True)
+
+    file_path = (path / "../scalers/scaler.sav").resolve()
+    scaler = pickle.load(open(file_path, 'rb'))
+
+    data = scaler.transform(data) 
+
+    return data
