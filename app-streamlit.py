@@ -1,5 +1,6 @@
 import streamlit as st
 from src.train import train_model
+from src.streamlit_utils import check_if_model_exists
 
 st.title('''
 Breast Cancer Diagnosis with Python
@@ -13,6 +14,7 @@ Also according to the INCA, there are an estimated 66,280 new cases for the year
 This is a proof of concept using streamlit for a breast cancer diagnostic model, since one of the fundamental parts of a project is to allow the end user to have access to the product and be able to use it
 ''')
 
+#importar aqui função pra ver se existe algum modelo treinando
 
 if st.button('Train Model!'):
     with st.spinner('Starting trainning the Model!'):
