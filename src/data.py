@@ -47,3 +47,17 @@ def load_data_to_predict(id):
     data = scaler.transform(data) 
 
     return data
+
+def prepare_data_to_predict_from_uri(data):
+
+    data = pd.DataFrame(data=data, index = [0])
+    if 'id' in data.columns:
+        data.drop(columns=['id'], inplace=True)
+    data.dropna(inplace=True)
+
+    file_path = (path / "../scalers/scaler.sav").resolve()
+    scaler = pickle.load(open(file_path, 'rb'))
+
+    data = scaler.transform(data) 
+
+    return data

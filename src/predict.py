@@ -6,7 +6,7 @@ import streamlit as st
 import pickle
 
 
-def predict_from_csv_file(X_to_predict):
+def predict_from_trained_model(X_to_predict):
 
     model = pickle.load(open('models/trained_model.sav', 'rb'))
     predict = model.predict(X_to_predict)
@@ -14,6 +14,3 @@ def predict_from_csv_file(X_to_predict):
     print(predict)
 
     return predict
-
-def predict_from_uri():
-    return None

@@ -4,8 +4,8 @@ from flask import Flask, request, jsonify, Blueprint
 import pickle
 import os
 from src.train import train_model
-from src.predict import predict_from_csv_file
-from src.data import load_data_to_predict
+from src.predict import predict_from_trained_model
+from src.data import load_data_to_predict, prepare_data_to_predict_from_uri
 
 app = Flask(__name__)
 
@@ -25,13 +25,18 @@ def predict_from_csv(event=None, _=None):
     file_id = body['file_id']
     
     data = load_data_to_predict(file_id)
-    predict = predict_from_csv_file(data)
+    predict = predict_from_trained_model(data)
     return f"API ONLINE v1.0st - {predict}", 200
 
 @app.route('/predict/', methods=['POST'])
 def predict(event=None, _=None):
+    body = request.args
+    body = body.to_dict()
     
-    return "API ONLINE v1.0st", 200
+    data = prepare_data_to_predict_from_uri(body)
+    predict = predict_from_trained_model(data)
+
+    return f"API ONLINE v1.0st - {predict}", 200
   
 
 
