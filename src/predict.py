@@ -9,7 +9,7 @@ import pickle
 def predict_from_csv_file(X_to_predict):
 
     model = pickle.load(open('models/trained_model.sav', 'rb'))
-    predict = model.predict(X_to_predict)[0]
+    predict = model.predict(X_to_predict)
 
     print(predict)
 

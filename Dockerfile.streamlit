@@ -6,4 +6,4 @@ WORKDIR /code
 
 RUN pip3 install -r requirements-streamlit.txt
 
-CMD streamlit run app-streamlit.py
+CMD ["./run-streamlit.sh"]

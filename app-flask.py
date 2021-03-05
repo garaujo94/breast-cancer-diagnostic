@@ -15,19 +15,22 @@ def verifica_api_online():
     return "API ONLINE v1.0st", 200
 
 @app.route("/train/", methods=['POST'])
-def train():
+def train(event=None, _=None):
     train_model()
     return "API ONLINE v1.0st", 200
 
-@app.route("/predict_from_csv/<file_id>", methods=['POST'])
-def predict_from_csv(file_id):
+@app.route("/predict_from_csv/", methods=['POST'])
+def predict_from_csv(event=None, _=None):
+    body = request.args
+    file_id = body['file_id']
     
     data = load_data_to_predict(file_id)
     predict = predict_from_csv_file(data)
-    return "API ONLINE v1.0st", 200
+    return f"API ONLINE v1.0st - {predict}", 200
 
 @app.route('/predict/', methods=['POST'])
-def predict():
+def predict(event=None, _=None):
+    
     return "API ONLINE v1.0st", 200
   
 
