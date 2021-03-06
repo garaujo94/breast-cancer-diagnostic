@@ -19,7 +19,7 @@ def train_breast_cancer(X, y, X_train, y_train, X_test, y_test, is_streamlit=Fal
         if is_streamlit:
             st.write('TRAIN REPORT')
 
-            st.table(pd.DataFrame(classification_report(y_train, pred_train, output_dict=True)).T[['precision', 'recall','f1-score']].iloc[[0,1]])
+            st.table(pd.DataFrame(classification_report(y_train, pred_train, output_dict=True)).T[['precision', 'recall']].iloc[[0,1]])
             
             st.write('Accuracy:')
             st.write(classification_report(y_train, pred_train, output_dict=True)['accuracy'])
@@ -31,7 +31,7 @@ def train_breast_cancer(X, y, X_train, y_train, X_test, y_test, is_streamlit=Fal
         pred_test = model.predict(X_test)
         if is_streamlit:
             st.write('TEST REPORT')
-            st.table(pd.DataFrame(classification_report(y_test, pred_test, output_dict=True)).T[['precision', 'recall','f1-score']].iloc[[0,1]])
+            st.table(pd.DataFrame(classification_report(y_test, pred_test, output_dict=True)).T[['precision', 'recall']].iloc[[0,1]])
             st.write('Accuracy:')
             st.write(classification_report(y_test, pred_test, output_dict=True)['accuracy'])
         else:

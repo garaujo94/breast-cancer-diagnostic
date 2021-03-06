@@ -61,3 +61,19 @@ def prepare_data_to_predict_from_uri(data):
     data = scaler.transform(data) 
 
     return data
+
+def deconding_prediction(y):
+
+    file_path = (path / "../encoders/label_encoder.sav").resolve()
+    le = pickle.load(open(file_path, 'rb'))
+
+    decoded = le.inverse_transform(np.array(y))[0]
+
+    mapper = {
+        'B': 'Benign',
+        'M': 'Malignant'
+    }
+
+    r = mapper[decoded]
+
+    return r
