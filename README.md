@@ -10,5 +10,12 @@
 
 <p align="justify">install the requirements in the files requirements-*.txt and run the files app-flask.py and/or app-streamlit.py.</p>
 
+## Structure
+
+- <b>Models:</b> stored at /models
+- <b>Scalers:</b> stored at /scalers
+- <b>Encoders:</b> stored at /encoders
+- <b>Data:</b> stored at /data
+- <b>Project main code:</b> stored at /src
 
 <p align="justify">This project is still in development.</p>
