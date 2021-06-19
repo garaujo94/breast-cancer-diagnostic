@@ -1,4 +1,4 @@
-/virtual-env
+
 /notebooks/.ipynb_checkpoints
 /encoders/label_encoder.sav
 /models/trained_model.sav
